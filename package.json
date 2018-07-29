@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.1.0",
+    "ghooks": "^2.0.4",
     "parcel-bundler": "^1.9.7",
     "stylus": "^0.54.5",
     "validate-commit-msg": "^2.14.0",
