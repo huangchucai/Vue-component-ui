@@ -1,8 +1,7 @@
 <template>
     <button class="g-button" :class="{[`icon-${iconPosition}`]: true}">
-        <svg class="icon" v-if="iconName">
-            <use :xlink:href="`#i-${iconName}`"></use>
-        </svg>
+        <icon :icon-name="iconName" v-if="iconName"></icon>
+        <icon icon-name="loading" class="loading"></icon>
         <div class="icon-content">
             <slot></slot>
         </div>
@@ -20,9 +19,9 @@
     }
 </script>
 <style lang="stylus">
-    .icon
-        width: 1em;
-        height: 1em;
+    @keyframes spin
+        0% {transform: rotate(0deg)}
+        100% {transform: rotate(360deg)}
     .g-button
         font-size: var(--font-size);
         height: var(--button-height);
@@ -53,4 +52,6 @@
                 order 2
                 margin-left: .2em
                 margin-right: 0
+        .loading
+            animation: 2s infinite spin linear
 </style>
