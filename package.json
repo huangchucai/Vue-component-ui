@@ -29,9 +29,15 @@
     "@vue/component-compiler-utils": "^2.1.0",
     "parcel-bundler": "^1.9.7",
     "stylus": "^0.54.5",
+    "validate-commit-msg": "^2.14.0",
     "vue-template-compiler": "^2.5.16"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    }
   }
 }
