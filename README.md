@@ -17,6 +17,15 @@
 3. 启动
     ```javascript
     ./node_modules/.bin/parcel index.html
-    npx parcel index.html
+    npx parcel --no-cache 
     ```
 
+### css总结
+1. 块级元素中的内联元素无法对齐的话，就加上`vertical-align`
+
+### vue总结
+1. `slot`插槽上添加class无效，可以在外面套一层div
+2. 属性的检查器`validator`
+3. vue中的template中使用JS的时候默认绑定this（内部用with实现）
+
+### js总结

@@ -9,6 +9,7 @@
 </template>
 <script>
     export default {
+        name: 'g-button',
         props: {
             iconPosition: {
               value: 'String',
