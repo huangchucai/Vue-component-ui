@@ -27,5 +27,6 @@
 1. `slot`插槽上添加class无效，可以在外面套一层div
 2. 属性的检查器`validator`
 3. vue中的template中使用JS的时候默认绑定this（内部用with实现）
+4. vue的组件注册的2种方式-> 全局注册(Vue.component)，局部注册({components: })
 
 ### js总结
