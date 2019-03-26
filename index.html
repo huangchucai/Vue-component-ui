@@ -31,23 +31,38 @@
         body {
             font-size: var(--font-size);
         }
+        .box {
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
 <div id="app">
-    <g-button icon-position="left" icon-name="setting" :loading="loadingFirst" @click="loadingFirst = !loadingFirst">
-        按钮
-    </g-button>
-    <g-button icon-position="right" icon-name="loading" :loading="loadingTwo" @click="loadingTwo = !loadingTwo">按钮
-    </g-button>
-    <g-button :loading="loadingThree">按钮</g-button>
-    <!--组合按钮-->
-    <g-button-group>
-        <g-button icon-name="left">上一页</g-button>
-        <g-button icon-name="right" icon-position="right">下一页</g-button>
-    </g-button-group>
-</div>
-<script src="./src/app.js"></script>
-<script src="//at.alicdn.com/t/font_767942_6cy1c657c1.js"></script>
+    <div class="box">
+        <g-input value="张三" disabled></g-input>
+        <g-input value="李四"></g-input>
+        <g-input value="张武" readonly></g-input>
+    </div>
+    <div class="box">
+        <g-input value="王武" error="用户名不能超过5位"></g-input>
+    </div>
+    <div class="box">
+        <g-button icon-position="left" icon-name="setting" :loading="loadingFirst"
+                  @click="loadingFirst = !loadingFirst">
+            按钮
+        </g-button>
+        <g-button icon-position="right" icon-name="loading" :loading="loadingTwo" @click="loadingTwo = !loadingTwo">按钮
+        </g-button>
+        <g-button :loading="loadingThree">按钮</g-button>
+        <!--组合按钮-->
+        <g-button-group>
+            <g-button icon-name="left">上一页</g-button>
+            <g-button icon-name="right" icon-position="right">下一页</g-button>
+        </g-button-group>
+        </div>
+
+    </div>
+    <script src="./src/app.js"></script>
+    <script src="//at.alicdn.com/t/font_767942_0oog45vbyni.js"></script>
 </body>
 </html>
