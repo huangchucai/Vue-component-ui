@@ -40,8 +40,13 @@
 <div id="app">
     <div class="box">
         <g-input value="张三" disabled></g-input>
-        <g-input value="李四"></g-input>
+        <g-input value="李四" @input="changeInput"></g-input>
+        <g-input value="黄先生"></g-input>
         <g-input value="张武" readonly></g-input>
+    </div>
+    <div class="box">
+        <g-input v-model="message"></g-input>
+        <div>{{message}}</div>
     </div>
     <div class="box">
         <g-input value="王武" error="用户名不能超过5位"></g-input>

@@ -28,6 +28,7 @@
 2. 属性的检查器`validator`
 3. vue中的template中使用JS的时候默认绑定this（内部用with实现）
 4. vue的组件注册的2种方式-> 全局注册(Vue.component)，局部注册({components: })
+5. vm.$el 只有在构造函数调用`$mount`的时候才会出现，渲染了dom
 
 ### js总结
 
@@ -35,3 +36,11 @@
 
 1. 可以使用`npm-check`来检查依赖的更新
 2. `npm link` 可以连接我们本地的包进行测试，而不用发布切换
+
+### 自动化测试和集成测试
+1. mocha:  `describe`(一组描述) 和 `it`（单个描述） 挂在window下面的全局函数
+2. chai: `expect`
+3. karma: 调用浏览器，自动化测试
+4. sinon: 提供fake间谍函数，模拟函数被callback
+5. travis ci: 集成测试
+6. sinon-chai: 同时引入`sinon`和`chai`  并且会在expect上添加`called`和`calledWith`
