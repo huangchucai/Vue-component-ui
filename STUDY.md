@@ -28,7 +28,17 @@
 2. 属性的检查器`validator`
 3. vue中的template中使用JS的时候默认绑定this（内部用with实现）
 4. vue的组件注册的2种方式-> 全局注册(Vue.component)，局部注册({components: })
-5. vm.$el 只有在构造函数调用`$mount`的时候才会出现，渲染了dom
+5. vm.$el 只有在构造函数调用`$mount`的时候才会出现，渲染dom
+6. created和mounted的区别 
+   ```javascript
+       const div = document.createElement('div')  // created  在内存中创建，没有放入dom中
+       const childDiv = document.createElement('div'); // child created
+       div.appendChild(childDiv); // child mounted
+       document.body.appendChild(div)  // mounted  放进页面中
+    
+       //  创建的顺序
+       parent created  => child created  => child mounted => parent mounted 
+    ```
 
 ### js总结
 
