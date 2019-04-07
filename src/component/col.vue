@@ -60,9 +60,9 @@
                     span && `col-${span}`,
                     offset && `offset-${offset}`,
                     ...(ipad ? [`col-ipad-${ipad.span}`] : []),
-                    ...(narrowPc ? [`col-narrowPc-${narrowPc.span}`] : []),
+                    ...(narrowPc ? [`col-narrow-pc-${narrowPc.span}`] : []),
                     ...(pc ? [`col-pc-${pc.span}`] : []),
-                    ...(widePc ? [`col-widePc-${widePc.span}`] : [])
+                    ...(widePc ? [`col-wide-pc-${widePc.span}`] : [])
                 ];
             }
         }
@@ -107,7 +107,7 @@
             for columns in 1 .. $grid-columns
                 &.{$class-prefix}{columns}
                     margin-left: (columns / $grid-columns) * 100%;
-        @media (min-width: 1201px)
+        @media (min-width: 1200px)
             $class-prefix = col-wide-pc-;
             for columns in 1 .. $grid-columns
                 &.{$class-prefix}{columns}
