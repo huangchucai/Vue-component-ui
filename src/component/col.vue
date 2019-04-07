@@ -23,10 +23,6 @@
             offset: {
                 type: [Number, String]
             },
-            phone: {
-                type: Object,
-                validator,
-            },
             ipad: {
                 type: Object,
                 validator,
@@ -59,11 +55,10 @@
                 };
             },
             colClass() {
-                const {span, offset, phone, ipad, narrowPc, pc, widePc} = this;
+                const {span, offset, ipad, narrowPc, pc, widePc} = this;
                 return [
                     span && `col-${span}`,
                     offset && `offset-${offset}`,
-                    ...(phone ? [`col-phone-${phone.span}`] : []),
                     ...(ipad ? [`col-ipad-${ipad.span}`] : []),
                     ...(narrowPc ? [`col-narrowPc-${narrowPc.span}`] : []),
                     ...(pc ? [`col-pc-${pc.span}`] : []),
@@ -85,25 +80,16 @@
         for columns in 1 .. $grid-columns
             &.offset-{columns}
                 margin-left: (columns / $grid-columns) * 100%;
-        @media (max-width: 576px)
-            $class-prefix = col-phone-;
-            for columns in 1 .. $grid-columns
-                &.{$class-prefix}{columns}
-                    width: (columns / $grid-columns) * 100%;
-            $class-prefix = offset-phone-
-            for columns in 1 .. $grid-columns
-                &.{$class-prefix}{columns}
-                    margin-left: (columns / $grid-columns) * 100%;
-        @media (min-width: 577px) and (max-width: 768px)
+        @media (min-width: 576px)
             $class-prefix = col-ipad-;
             for columns in 1 .. $grid-columns
                 &.{$class-prefix}{columns}
                     width: (columns / $grid-columns) * 100%;
-            $class-prefix = offset-phone-
+            $class-prefix = offset-ipad-
             for columns in 1 .. $grid-columns
                 &.{$class-prefix}{columns}
                     margin-left: (columns / $grid-columns) * 100%;
-        @media (min-width: 769px) and (max-width: 992px)
+        @media (min-width: 768px)
             $class-prefix = col-narrow-pc-;
             for columns in 1 .. $grid-columns
                 &.{$class-prefix}{columns}
@@ -112,7 +98,7 @@
             for columns in 1 .. $grid-columns
                 &.{$class-prefix}{columns}
                     margin-left: (columns / $grid-columns) * 100%;
-        @media (min-width: 993px) and (max-width: 1200px)
+        @media (min-width: 992px)
             $class-prefix = col-pc-;
             for columns in 1 .. $grid-columns
                 &.{$class-prefix}{columns}
