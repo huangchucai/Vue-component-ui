@@ -5,6 +5,12 @@ import ButtonGroup from './component/button-group';
 import Input from './component/input';
 import Col from './component/col';
 import Row from './component/row';
+import Footer from './component/footer';
+import Header from './component/header';
+import Layout from './component/layout';
+import Sider from './component/sider';
+import Content from './component/content';
+
 
 Vue.component('g-button', Button);
 Vue.component('icon', Icon);
@@ -12,6 +18,11 @@ Vue.component('g-button-group', ButtonGroup);
 Vue.component('g-input', Input);
 Vue.component('g-col', Col);
 Vue.component('g-row', Row);
+Vue.component('g-layout', Layout);
+Vue.component('g-header', Header);
+Vue.component('g-content', Content);
+Vue.component('g-sider', Sider);
+Vue.component('g-footer', Footer);
 
 new Vue({
     el: '#app',
@@ -23,14 +34,4 @@ new Vue({
             message: '李四'
         };
     },
-    mounted() {
-        const event = new Event('input');
-        const inputEvent = this.$el.querySelectorAll('input')[1];
-        inputEvent.dispatchEvent(event);
-    },
-    methods: {
-        changeInput(e) {
-            console.log(e);
-        },
-    }
 });

@@ -24,79 +24,30 @@
             --border-color-hover: #666;
         }
 
-        #app {
-            margin: 20px;
-        }
-
         body {
             font-size: var(--font-size);
         }
 
-        .box {
-            margin: 20px;
-        }
     </style>
     <style>
         .demo {
-            height: 50px;
+            min-height: 100px;
             background: #999;
-            border: 1px solid #abcdef;
+            border: 1px solid #333;
         }
     </style>
 
 </head>
 <body>
 <div id="app">
-    <div style="border: 1px solid red;">
-      <g-row>
-          <g-col :span="24" :ipad="{span: 12}" :narrow-pc="{span: 6}"  :wide-pc="{span: 2}">
-              <div class="demo"></div>
-          </g-col>
-          <g-col :span="24" :ipad="{span: 12}" :narrow-pc="{span: 6}"  :wide-pc="{span: 2}">
-              <div class="demo"></div>
-          </g-col>
-          <g-col :span="24" :ipad="{span: 12}" :narrow-pc="{span: 6}"  :wide-pc="{span: 2}">
-              <div class="demo"></div>
-          </g-col>
-          <g-col :span="24" :ipad="{span: 12}" :narrow-pc="{span: 6}"  :wide-pc="{span: 2}">
-              <div class="demo"></div>
-          </g-col>
-          <g-col :span="24" :ipad="{span: 12}" :narrow-pc="{span: 6}"  :wide-pc="{span: 2}">
-              <div class="demo"></div>
-          </g-col>
-          <g-col :span="24" :ipad="{span: 12}" :narrow-pc="{span: 6}"  :wide-pc="{span: 2}">
-              <div class="demo"></div>
-          </g-col>
-      </g-row>
-    </div>
-    <div></div>
-    <div class="box">
-        <g-input value="张三" disabled></g-input>
-        <g-input value="李四" @input="changeInput"></g-input>
-        <g-input value="黄先生"></g-input>
-        <g-input value="张武" readonly></g-input>
-    </div>
-    <div class="box">
-        <g-input v-model="message"></g-input>
-        <div>{{message}}</div>
-    </div>
-    <div class="box">
-        <g-input value="王武" error="用户名不能超过5位"></g-input>
-    </div>
-    <div class="box">
-        <g-button icon-position="left" icon-name="setting" :loading="loadingFirst"
-                  @click="loadingFirst = !loadingFirst">
-            按钮
-        </g-button>
-        <g-button icon-position="right" icon-name="loading" :loading="loadingTwo" @click="loadingTwo = !loadingTwo">按钮
-        </g-button>
-        <g-button :loading="loadingThree">按钮</g-button>
-        <!--组合按钮-->
-        <g-button-group>
-            <g-button icon-name="left">上一页</g-button>
-            <g-button icon-name="right" icon-position="right">下一页</g-button>
-        </g-button-group>
-    </div>
+    <g-layout style="height: 100vh;">
+        <g-sider class="demo">sider</g-sider>
+        <g-layout>
+            <g-header class="demo">header</g-header>
+            <g-content class="demo">content</g-content>
+            <g-footer class="demo">footer</g-footer>
+        </g-layout>
+    </g-layout>
 </div>
 <script src="./src/app.js"></script>
 <script src="//at.alicdn.com/t/font_767942_0oog45vbyni.js"></script>
