@@ -30,10 +30,17 @@
 
     </style>
     <style>
-        .demo {
-            min-height: 100px;
-            background: #999;
-            border: 1px solid #333;
+        .sider {
+            width: 200px;
+            background: #ccc;
+        }
+        .header {
+            height: 100px;
+            background: #333;
+        }
+        .footer {
+            height: 100px;
+            background: #666;
         }
     </style>
 
@@ -41,11 +48,11 @@
 <body>
 <div id="app">
     <g-layout style="height: 100vh;">
-        <g-sider class="demo">sider</g-sider>
+        <g-sider>sider</g-sider>
         <g-layout>
-            <g-header class="demo">header</g-header>
-            <g-content class="demo">content</g-content>
-            <g-footer class="demo">footer</g-footer>
+            <g-header>header</g-header>
+            <g-content>content</g-content>
+            <g-footer>footer</g-footer>
         </g-layout>
     </g-layout>
 </div>
