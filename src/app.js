@@ -10,7 +10,8 @@ import Header from './component/header';
 import Layout from './component/layout';
 import Sider from './component/sider';
 import Content from './component/content';
-
+import Toast from './component/toast';
+import MyPlugin from './myPlugin';
 
 Vue.component('g-button', Button);
 Vue.component('icon', Icon);
@@ -23,6 +24,9 @@ Vue.component('g-header', Header);
 Vue.component('g-content', Content);
 Vue.component('g-sider', Sider);
 Vue.component('g-footer', Footer);
+Vue.component('g-toast', Toast);
+
+Vue.use(MyPlugin);
 
 new Vue({
     el: '#app',
@@ -34,4 +38,9 @@ new Vue({
             message: '李四'
         };
     },
+    methods: {
+        showToast() {
+            this.$toast('I am Toast');
+        }
+    }
 });
