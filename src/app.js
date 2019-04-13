@@ -40,7 +40,12 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('I am Toast');
+            this.$toast('I am Toast', {
+                callback() {
+                    console.log('toast 的callback')
+                },
+                text: '点击'
+            });
         }
     }
 });
