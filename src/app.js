@@ -40,7 +40,7 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('点击toast', {
+            this.$toast(`${parseInt(Math.random() * 100)} 点击toast`, {
                 closeButton: {
                     callback() {
                         console.log('toast 的callback');

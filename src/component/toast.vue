@@ -57,6 +57,8 @@
             },
             close() {
                 this.$el.remove();
+                // 点击关闭的时候，清空currentToast
+                this.$emit('currentToastClose');
                 this.$destroy();
             },
             closeButtonCallback() {
