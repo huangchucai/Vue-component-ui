@@ -40,11 +40,13 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('I am Toast', {
-                callback() {
-                    console.log('toast 的callback')
+            this.$toast('点击toast', {
+                closeButton: {
+                    callback() {
+                        console.log('toast 的callback');
+                    },
+                    text: '点击',
                 },
-                text: '点击'
             });
         }
     }
