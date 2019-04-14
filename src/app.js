@@ -39,14 +39,26 @@ new Vue({
         };
     },
     methods: {
-        showToast() {
-            this.$toast(`${parseInt(Math.random() * 100)} 点击toast`, {
+        showToast1() {
+            this.showToast('top');
+        },
+        showToast2() {
+            this.showToast('middle');
+        },
+        showToast3() {
+            this.showToast('bottom');
+        },
+        showToast(position) {
+            this.$toast(`你的智商为${parseInt(Math.random() * 100)} 已经不足`, {
                 closeButton: {
                     callback() {
                         console.log('toast 的callback');
                     },
-                    text: '点击',
+                    text: '充值',
                 },
+                autoClose: true,
+                autoCloseDelay: 20,
+                position
             });
         }
     }
