@@ -5,7 +5,7 @@
             <div v-html="$slots.default" v-else></div>
         </div>
         <span class="line" ref="line"></span>
-        <span class="close-button" @click="closeButtonCallback">{{closeButton.text}}</span>
+        <span class="close-button" v-if="closeButton" @click="closeButtonCallback">{{closeButton.text}}</span>
     </div>
 </template>
 
@@ -14,12 +14,12 @@
         name: 'g-toast',
         props: {
             autoClose: {
-                type: Boolean,
-                default: true
-            },
-            autoCloseDelay: {
-                type: Number,
-                default: 200
+                type: [Boolean, Number],
+                default: 2,
+                validator(value) {
+                    // 自动消失执行时长或去掉自动消失
+                    return value === false || typeof value === 'number';
+                }
             },
             closeButton: {
                 type: Object,
@@ -56,7 +56,7 @@
                 if (this.autoClose) {
                     setTimeout(() => {
                         this.close();
-                    }, this.autoCloseDelay * 1000);
+                    }, this.autoClose * 1000);
                 }
             },
             updateStyle() {
@@ -64,7 +64,10 @@
                 this.$nextTick(() => {
                     // console.log(getComputedStyle(this.$refs.toast).height);
                     // console.log(this.$refs.toast.getBoundingClientRect().height);
-                    this.$refs.line.style.height = getComputedStyle(this.$refs.toast).height;
+                    if(this.$refs.line) {
+                        this.$refs.line.style.height =`${this.$refs.toast.getBoundingClientRect().height}px`
+                    }
+                    // this.$refs.line.style.height = getComputedStyle(this.$refs.toast).height;
                 });
             },
             close() {

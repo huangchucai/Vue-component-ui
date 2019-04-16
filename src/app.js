@@ -56,8 +56,7 @@ new Vue({
                     },
                     text: '充值',
                 },
-                autoClose: true,
-                autoCloseDelay: 20,
+                autoClose: 20,
                 position
             });
         }
