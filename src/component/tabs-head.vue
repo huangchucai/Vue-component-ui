@@ -7,6 +7,9 @@
 
 <script>
     export default {
-        name: 'g-head'
+        name: 'g-head',
+        inject: ['eventBus'],
+        created() {
+        }
     }
 </script>
