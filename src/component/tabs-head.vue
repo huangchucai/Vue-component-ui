@@ -10,6 +10,7 @@
         name: 'g-head',
         inject: ['eventBus'],
         created() {
+            // this.$emit('update:selected', '这是g-tabs组件触发的事件')
         }
     }
 </script>

@@ -50,14 +50,9 @@ new Vue({
         };
     },
     methods: {
-        showToast1() {
-            this.showToast('top');
-        },
-        showToast2() {
-            this.showToast('middle');
-        },
-        showToast3() {
-            this.showToast('bottom');
+        yyy(data) {
+            console.log('yyy');
+            console.log(data);
         },
         showToast(position) {
             this.$toast(`你的智商为${parseInt(Math.random() * 100)} 已经不足`, {

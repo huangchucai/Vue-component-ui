@@ -33,7 +33,7 @@
             };
         },
         created() {
-            // this.$emit('update:selected', 'xxx')
-        }
+            this.$emit('update:selected', '这是g-tabs组件触发的事件')
+        },
     };
 </script>
