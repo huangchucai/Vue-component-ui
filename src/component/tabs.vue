@@ -1,5 +1,5 @@
 <template>
-    <div class="toast">
+    <div class="tab">
         <slot></slot>
     </div>
 </template>
@@ -25,15 +25,15 @@
         data() {
             return {
                 eventBus: new Vue()
-            }
+            };
         },
         provide() {
             return {
                 eventBus: this.eventBus
             };
         },
-        created() {
-            this.$emit('update:selected', '这是g-tabs组件触发的事件')
+        mounted() {
+            this.eventBus.$emit('update:selected', this.selected);
         },
     };
 </script>

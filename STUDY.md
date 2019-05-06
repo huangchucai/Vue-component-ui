@@ -44,6 +44,10 @@
     * 组件爷爷和孙子之间eventBus的使用  `provide`  `inject`的使用
     * 不同的对象的事件触发不同。例如： this.eventBus和this上不同的时间触发
     * Vue中的事件不会进行**冒泡传递**
+    
+9. data和props的区别使用
+    * `props`需要开发者传递值， `data` 不需要传递值，自身维护
+    * 组件就相当于一个函数，`props`就相当于参数，`data`就相当于局部变量
 
 ### js总结
 

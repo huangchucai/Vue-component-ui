@@ -1,5 +1,5 @@
 <template>
-    <div class="toast-body">
+    <div class="tab-body">
         <slot></slot>
     </div>
 </template>

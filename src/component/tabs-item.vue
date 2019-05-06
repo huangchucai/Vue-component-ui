@@ -1,5 +1,5 @@
 <template>
-    <div class="toast-item" @click="xxx">
+    <div class="tab-item" @click="xxx" :class="activeClass">
         <slot></slot>
     </div>
 </template>
@@ -8,6 +8,18 @@
     export default {
         name: 'g-tabs-item',
         inject: ['eventBus'],
+        data() {
+            return {
+                active: false
+            };
+        },
+        computed: {
+            activeClass() {
+                return {
+                    active: this.active
+                };
+            }
+        },
         props: {
             disabled: {
                 type: Boolean,
@@ -18,9 +30,9 @@
             }
         },
         created() {
-            this.eventBus.$on('update:selected', (data) => {
-                console.log(data);
-            })
+            this.eventBus.$on('update:selected', (name) => {
+                this.active = name === this.name;
+            });
         },
         methods: {
             xxx() {
@@ -29,3 +41,10 @@
         }
     };
 </script>
+<style scoped lang="stylus">
+    .tab-item
+        flex-shrink: 0
+        padding: 0 1em;
+        &.active
+            background: red
+</style>

@@ -46,25 +46,9 @@ new Vue({
             loadingTwo: false,
             loadingThree: true,
             message: '李四',
-            selectedTab: '体育'
+            selectedTab: 'sports'
         };
     },
     methods: {
-        yyy(data) {
-            console.log('yyy');
-            console.log(data);
-        },
-        showToast(position) {
-            this.$toast(`你的智商为${parseInt(Math.random() * 100)} 已经不足`, {
-                closeButton: {
-                    callback() {
-                        console.log('toast 的callback');
-                    },
-                    text: '充值',
-                },
-                autoClose: 20,
-                position
-            });
-        }
     }
 });
