@@ -12,7 +12,7 @@
         props: {
             selected: {
                 type: String,
-                required: true
+                required: true,
             },
             direction: {
                 type: String,
@@ -32,8 +32,21 @@
                 eventBus: this.eventBus
             };
         },
+        created() {
+            this.eventBus.$on('update:selected', (name) => {
+                this.$emit('update:selected', name);
+            });
+        },
         mounted() {
-            this.eventBus.$emit('update:selected', this.selected);
+            this.$children.forEach(vm => {
+                if (vm.$options.name === 'g-head') {
+                    vm.$children.forEach(childVm => {
+                        if (childVm.$options.name === 'g-tabs-item' && childVm.name === this.selected) {
+                            this.eventBus.$emit('update:selected', this.selected, childVm);
+                        }
+                    });
+                }
+            });
         },
     };
 </script>

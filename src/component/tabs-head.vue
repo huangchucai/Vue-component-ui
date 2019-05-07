@@ -1,5 +1,6 @@
 <template>
     <div class="toast-head">
+        <div class="line" ref="line"></div>
         <slot></slot>
         <div class="slot-wrapper">
             <slot name="actions"></slot>
@@ -11,8 +12,12 @@
     export default {
         name: 'g-head',
         inject: ['eventBus'],
-        created() {
-            // this.$emit('update:selected', '这是g-tabs组件触发的事件')
+        mounted() {
+            this.eventBus.$on('update:selected', (name, vm) => {
+                const {width, left} = vm.$el.getBoundingClientRect();
+                this.$refs.line.style.left = `${left}px`;
+                this.$refs.line.style.width = `${width}px`;
+            });
         }
     };
 </script>
@@ -22,8 +27,13 @@
         display: flex
         height: $tab-height
         justify-content: flex-start
-        align-items: center
-        border: 1px solid red
+        position: relative;
         > .slot-wrapper
             margin-left auto
+        .line
+            border-bottom: 1px solid green;
+            position absolute
+            bottom: 0
+            transition: all .3s;
+
 </style>

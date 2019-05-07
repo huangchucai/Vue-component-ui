@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-item" @click="xxx" :class="activeClass">
+    <div class="tab-item" @click="checkItem" :class="activeClass">
         <slot></slot>
     </div>
 </template>
@@ -35,16 +35,22 @@
             });
         },
         methods: {
-            xxx() {
-                this.eventBus.$emit('update:selected', this.name);
+            checkItem() {
+                this.eventBus.$emit('update:selected', this.name, this);
             }
         }
     };
 </script>
 <style scoped lang="stylus">
+    $blue = blue
     .tab-item
         flex-shrink: 0
-        padding: 0 1em;
+        padding: 0 1em
+        display: flex
+        align-items: center
+        height: 100%
+        cursor: pointer
         &.active
             background: red
+            color: $blue
 </style>

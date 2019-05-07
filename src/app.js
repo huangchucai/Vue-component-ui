@@ -42,10 +42,6 @@ new Vue({
     el: '#app',
     data() {
         return {
-            loadingFirst: false,
-            loadingTwo: false,
-            loadingThree: true,
-            message: '李四',
             selectedTab: 'sports'
         };
     },
