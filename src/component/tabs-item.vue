@@ -16,7 +16,8 @@
         computed: {
             activeClass() {
                 return {
-                    active: this.active
+                    active: this.active,
+                    disabled: this.disabled
                 };
             }
         },
@@ -36,6 +37,7 @@
         },
         methods: {
             checkItem() {
+                if (this.disabled) return;
                 this.eventBus.$emit('update:selected', this.name, this);
             }
         }
@@ -53,4 +55,8 @@
         &.active
             background: aliceblue
             color: $blue
+        &.disabled
+            background: #ccc
+            color: #fff
+            cursor not-allowed
 </style>
