@@ -35,5 +35,5 @@
 <style scoped lang="stylus">
     .tab-pane
         &.active
-            background: #ccc
+            padding 1em
 </style>

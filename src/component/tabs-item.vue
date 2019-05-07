@@ -51,6 +51,6 @@
         height: 100%
         cursor: pointer
         &.active
-            background: red
+            background: aliceblue
             color: $blue
 </style>

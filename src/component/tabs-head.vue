@@ -28,12 +28,17 @@
         height: $tab-height
         justify-content: flex-start
         position: relative;
+        border: 1px solid #ddd
         > .slot-wrapper
             margin-left auto
+            display: flex
+            justify-content:center
+            align-items: center
+            padding 0 1em
         .line
-            border-bottom: 1px solid green;
+            border-bottom: 1px solid grey;
             position absolute
             bottom: 0
-            transition: all .3s;
+            transition: all .2s;
 
 </style>
