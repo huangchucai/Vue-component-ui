@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-item" @click="checkItem" :class="activeClass">
+    <div class="tab-item" @click="checkItem" :data-name="name" :class="activeClass">
         <slot></slot>
     </div>
 </template>
@@ -31,14 +31,17 @@
             }
         },
         created() {
-            this.eventBus.$on('update:selected', (name) => {
-                this.active = name === this.name;
-            });
+            if (this.eventBus) {
+                this.eventBus.$on('update:selected', (name) => {
+                    this.active = name === this.name;
+                });
+            }
         },
         methods: {
             checkItem() {
                 if (this.disabled) return;
-                this.eventBus.$emit('update:selected', this.name, this);
+                this.eventBus && this.eventBus.$emit('update:selected', this.name, this);
+                this.$emit('click')
             }
         }
     };
