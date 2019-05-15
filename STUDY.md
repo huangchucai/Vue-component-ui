@@ -48,8 +48,10 @@
 9. data和props的区别使用
     * `props`需要开发者传递值， `data` 不需要传递值，自身维护
     * 组件就相当于一个函数，`props`就相当于参数，`data`就相当于局部变量
+10. slot中获取不到对应的dom（页面不渲染，所以不能通过ref获取值）
 
 ### js总结
+1. `element.getBoundingClientRect`: 获取元素距离视口的距离和自身大小（注意滚动后的变化）
 
 ### npm 总结
 
