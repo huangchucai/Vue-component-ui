@@ -1,6 +1,6 @@
 <template>
-    <div class="popover" @click.stop="xxx">
-        <div ref="contentWrapper" class="content-wrapper" v-if="visible" @click.stop>
+    <div class="popover" @click="checkPopover">
+        <div ref="contentWrapper" class="content-wrapper" v-if="visible">
             <slot name="content"></slot>
         </div>
         <span class="triggerWrapper" ref="triggerWrapper">
@@ -18,24 +18,26 @@
             };
         },
         methods: {
-            xxx() {
-                this.visible = !this.visible;
-                if (this.visible === true) {
-                    console.log('popover展示');
-                    this.$nextTick(() => {
-                        document.body.appendChild(this.$refs.contentWrapper);
-                        let {width, height, top, left} = this.$refs.triggerWrapper.getBoundingClientRect();
-                        this.$refs.contentWrapper.style.top = `${top + window.scrollY}px`;
-                        this.$refs.contentWrapper.style.left = `${left + window.scrollX}px`;
-                        let eventHandler = () => {
-                            this.visible = false;
-                            console.log('document popover消失');
-                            document.removeEventListener('click', eventHandler);
-                        };
-                        document.addEventListener('click', eventHandler);
-                    });
-                } else {
-                    console.log('vm popover消失');
+            checkPopover(e) {
+                if (this.$refs.triggerWrapper && this.$refs.triggerWrapper.contains(e.target)) {
+                    this.visible = !this.visible;
+                    if (this.visible === true) {
+                        this.$nextTick(() => {
+                            document.body.appendChild(this.$refs.contentWrapper);
+                            let {top, left} = this.$refs.triggerWrapper.getBoundingClientRect();
+                            this.$refs.contentWrapper.style.top = `${top + window.scrollY}px`;
+                            this.$refs.contentWrapper.style.left = `${left + window.scrollX}px`;
+                            let eventHandler = (e) => {
+                                if (this.$refs.contentWrapper.contains(e.target)) {
+                                    return;
+                                }
+                                this.visible = false;
+                                console.log('document popover消失');
+                                document.removeEventListener('click', eventHandler);
+                            };
+                            document.addEventListener('click', eventHandler);
+                        });
+                    }
                 }
             }
         }
