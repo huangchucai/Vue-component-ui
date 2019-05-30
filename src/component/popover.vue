@@ -1,7 +1,7 @@
 <template>
     <div class="popover" @click="checkPopover">
         <div ref="contentWrapper" class="content-wrapper" v-if="visible"
-             :class="{[`position-${position}`]: true}">
+             :class="{[`position-${popoverPosition}`]: true}">
             <slot name="content"></slot>
         </div>
         <span class="trigger-wrapper" ref="triggerWrapper">
@@ -15,7 +15,8 @@
         name: 'popover',
         data() {
             return {
-                visible: false
+                visible: false,
+                popoverPosition: ''
             };
         },
         props: {
@@ -29,44 +30,63 @@
         },
         methods: {
             positionContent() {
-                document.body.appendChild(this.$refs.contentWrapper);
                 const {triggerWrapper, contentWrapper} = this.$refs;
-                let {top, left, height, width} = triggerWrapper.getBoundingClientRect();
-                if (this.position === 'top') {
-                    contentWrapper.style.top = `${top + window.scrollY}px`;
-                    contentWrapper.style.left = `${left + window.scrollX}px`;
-                } else if (this.position === 'bottom') {
-                    contentWrapper.style.top = `${top + height + window.scrollY}px`;
-                    contentWrapper.style.left = `${left + window.scrollX}px`;
-                } else if (this.position === 'left') {
-                    const {height: wrapperHeight} = contentWrapper.getBoundingClientRect();
-                    contentWrapper.style.top = `${top + (height - wrapperHeight) / 2 + window.scrollY}px`;
-                    contentWrapper.style.left = `${left + window.scrollX}px`;
-                } else if (this.position === 'right') {
-                    const {height: wrapperHeight} = contentWrapper.getBoundingClientRect();
-                    contentWrapper.style.top = `${top + (height - wrapperHeight) / 2 + window.scrollY}px`;
-                    contentWrapper.style.left = `${left + width+ window.scrollX}px`;
-                }
-
-            },
-            listenDocument() {
-                let eventHandler = (e) => {
-                    if (this.$refs.contentWrapper.contains(e.target)) {
-                        return;
+                document.body.appendChild(contentWrapper);
+                const {top, left, height, width} = triggerWrapper.getBoundingClientRect();
+                const {height: wrapperHeight} = contentWrapper.getBoundingClientRect();
+                this.computedPosition(wrapperHeight, top);
+                const positionTable = {
+                    top: {
+                        top: top + window.scrollY,
+                        left: left + window.scrollX
+                    },
+                    bottom: {
+                        top: top + height + window.scrollY,
+                        left: left + window.scrollX
+                    },
+                    left: {
+                        top: top + (height - wrapperHeight) / 2 + window.scrollY,
+                        left: left + window.scrollX
+                    },
+                    right: {
+                        top: top + (height - wrapperHeight) / 2 + window.scrollY,
+                        left: left + width + window.scrollX
                     }
-                    this.visible = false;
-                    document.removeEventListener('click', eventHandler);
                 };
-                document.addEventListener('click', eventHandler);
+                contentWrapper.style.top = `${positionTable[this.popoverPosition].top}px`;
+                contentWrapper.style.left = `${positionTable[this.popoverPosition].left}px`;
+            },
+            computedPosition(wrapperHeight, top) {
+                if (wrapperHeight + 10 > top && this.position === 'top') {
+                    this.popoverPosition = 'bottom';
+                } else {
+                    this.popoverPosition = this.position;
+                }
+            },
+            eventHandler(e) {
+                if (this.$refs.contentWrapper.contains(e.target)) {
+                    return;
+                }
+                this.close();
+            },
+            // todo: 这里功能明确，点开和关闭分开
+            close() {
+                this.visible = false;
+                document.removeEventListener('click', this.eventHandler);
+            },
+            open() {
+                this.visible = true;
+                this.$nextTick(() => {
+                    this.positionContent();
+                    document.addEventListener('click', this.eventHandler);
+                });
             },
             checkPopover(e) {
                 if (this.$refs.triggerWrapper && this.$refs.triggerWrapper.contains(e.target)) {
-                    this.visible = !this.visible;
                     if (this.visible === true) {
-                        this.$nextTick(() => {
-                            this.positionContent();
-                            this.listenDocument();
-                        });
+                        this.close();
+                    } else {
+                        this.open();
                     }
                 }
             }
@@ -117,7 +137,7 @@
         &.position-left
             transform translateX(-100%)
             margin-left -10px;
-            &::before,&::after
+            &::before, &::after
                 top: 50%;
                 transform translateY(-50%)
             &::before
@@ -128,7 +148,7 @@
                 left: calc(100% - 1px);
         &.position-right
             margin-left 10px;
-            &::before,&::after
+            &::before, &::after
                 top: 50%;
                 transform translateY(-50%)
             &::before
