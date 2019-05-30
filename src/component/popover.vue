@@ -39,7 +39,9 @@
             if (this.trigger === 'click') {
                 this.$refs.popover.addEventListener('click', this.checkPopover);
             } else {
-                this.$refs.popover.addEventListener('mouseenter', this.open);
+                this.$refs.popover.addEventListener('mouseenter', () => {
+                    this.open()
+                });
                 this.$refs.popover.addEventListener('mouseleave', this.close);
             }
         },
@@ -70,7 +72,6 @@
         methods: {
             positionContent() {
                 document.body.appendChild(this.$refs.contentWrapper);
-
                 const {triggerWrapper, contentWrapper} = this.$refs;
                 const {top, left, height, width} = triggerWrapper.getBoundingClientRect();
                 const {height: wrapperHeight} = contentWrapper.getBoundingClientRect();

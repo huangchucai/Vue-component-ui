@@ -17,7 +17,7 @@ import TabsBody from './component/tabs-body';
 import TabsHead from './component/tabs-head';
 import TabsItem from './component/tabs-item';
 import TabsPane from './component/tabs-pane';
-import Popover from './component/popover'
+import Popover from './component/popover';
 
 Vue.component('g-button', Button);
 Vue.component('g-icon', Icon);
