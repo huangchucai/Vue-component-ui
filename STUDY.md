@@ -39,7 +39,10 @@
        //  创建的顺序
        parent created  => child created  => child mounted => parent mounted 
     ```
-7. data / computed 的使用  -> data会在created的时候读取一次，之后并不会在读取初始化的数据，computed计算属性对应的属性变化就会重新渲染
+7. data / computed 的使用  -> 
+    * data会在created的时候读取一次，之后并不会在读取初始化的数据，
+    * computed计算属性对应的属性变化就会重新渲染
+    * computed一般都是通过data计算出来的属性
 8. Vue的事件传递
     * 组件爷爷和孙子之间eventBus的使用  `provide`  `inject`的使用
     * 不同的对象的事件触发不同。例如： this.eventBus和this上不同的时间触发

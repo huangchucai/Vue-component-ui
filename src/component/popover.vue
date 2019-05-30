@@ -1,5 +1,5 @@
 <template>
-    <div class="popover" @click="checkPopover">
+    <div class="popover" ref="popover">
         <div ref="contentWrapper" class="content-wrapper" v-if="visible"
              :class="{[`position-${popoverPosition}`]: true}">
             <slot name="content"></slot>
@@ -26,12 +26,52 @@
                 validator(val) {
                     return ['top', 'bottom', 'left', 'right'].indexOf(val) > -1;
                 }
+            },
+            trigger: {
+                type: String,
+                default: 'click',
+                validator(val) {
+                    return ['click', 'hover'].indexOf(val) >= 0;
+                }
+            }
+        },
+        mounted() {
+            if (this.trigger === 'click') {
+                this.$refs.popover.addEventListener('click', this.checkPopover);
+            } else {
+                this.$refs.popover.addEventListener('mouseenter', this.open);
+                this.$refs.popover.addEventListener('mouseleave', this.close);
+            }
+        },
+        destroyed() {
+            if (this.trigger === 'click' && this.$refs.popover) {
+                this.$refs.popover.removeEventListener('click', this.checkPopover);
+            } else {
+                this.$refs.popover && this.$refs.popover.removeEventListener('mouseenter', this.open);
+                this.$refs.popover && this.$refs.popover.removeEventListener('mouseleave', this.close);
+            }
+        },
+        computed: {
+            openEvent() {
+                if (this.trigger === 'click') {
+                    return 'click';
+                } else {
+                    return 'mouseenter';
+                }
+            },
+            closeEvent() {
+                if (this.trigger === 'click') {
+                    return 'click';
+                } else {
+                    return 'mouseleave';
+                }
             }
         },
         methods: {
             positionContent() {
+                document.body.appendChild(this.$refs.contentWrapper);
+
                 const {triggerWrapper, contentWrapper} = this.$refs;
-                document.body.appendChild(contentWrapper);
                 const {top, left, height, width} = triggerWrapper.getBoundingClientRect();
                 const {height: wrapperHeight} = contentWrapper.getBoundingClientRect();
                 this.computedPosition(wrapperHeight, top);
@@ -64,7 +104,7 @@
                 }
             },
             eventHandler(e) {
-                if (this.$refs.contentWrapper.contains(e.target)) {
+                if (this.$refs.popover.contains(e.target) || this.$refs.contentWrapper.contains(e.target)) {
                     return;
                 }
                 this.close();
