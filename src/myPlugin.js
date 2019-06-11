@@ -1,7 +1,6 @@
 import Toast from './component/toast';
 
 let currentToast;
-console.log('test');
 export default {
     install(Vue, options) {
         Vue.prototype.$toast = function (message, props) {
