@@ -16,7 +16,7 @@
         },
         props: {
             iconPosition: {
-              value: 'String',
+              value: String,
               default: 'left',
               validator(value) {
                   return value === 'left' || value === 'right'

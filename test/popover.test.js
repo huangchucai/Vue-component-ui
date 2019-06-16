@@ -31,7 +31,7 @@ describe('Popover', () => {
                 const {contentWrapper} = vm.$refs.a.$refs;
                 expect(contentWrapper.classList.contains('position-left')).to.be.true;
                 done();
-            }, 100);
+            });
         });
         it('可以设置trigger', (done) => {
             Vue.component('g-popover', Popover);
